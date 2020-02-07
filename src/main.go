@@ -8,7 +8,7 @@ import (
 )
 
 const SERVER_PORT = ":3000"  // Host port to serve on
-const WEB_DIR = "./src/web"  // Where the static production build can be found for the website frontend
+const WEB_DIR = "./src/web"  // Location of the static production build directory for the website frontend
 
 func main() {
 	// Perform all setups before server goes live and starts listening for requests
@@ -32,8 +32,7 @@ func initialSetup() {
 func logger(flag string, msg string) {
 	file, err := os.OpenFile("info.log", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0644)
 	if err != nil {
-		//log.Fatal(err)
-		fmt.Printf("[CRITICAL] Error during logger() execution. Stopping program execution.")
+		fmt.Printf("Terminating program. Error during logger() execution:\n" + err.Error())
 		os.Exit(1)
 	}
 	log.SetOutput(file)
