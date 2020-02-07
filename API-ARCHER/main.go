@@ -8,7 +8,6 @@ import (
 )
 
 const SERVER_PORT = ":3000"
-//const STATIC_DIR = "/static/"  // for use w/ ReactJS
 
 func main() {
 	// Perform all setups before server goes live and starts listening for requests
@@ -17,11 +16,13 @@ func main() {
 	//routeHandler := initRouter()
 	fmt.Println("Server started on 127.0.0.1" + SERVER_PORT)
 	//startServer(routeHandler)
-	startServerReact()
+	startServer_React()
 }
 
-func startServerReact() {
-	http.Handle("/", http.FileServer(http.Dir("./")))
+func startServer_React() {
+	//http.Handle("/", http.FileServer(http.Dir("./")))
+	//http.Handle("/", http.StripPrefix("/web/", http.FileServer(http.Dir("./web"))))
+	http.Handle("/", http.FileServer(http.Dir("./web")))
 	http.ListenAndServe(SERVER_PORT, nil)
 }
 
