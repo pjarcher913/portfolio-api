@@ -7,7 +7,7 @@
  Because everything was built on-top of a Golang backend, the program (once compiled and built) is ran entirely from a
  single executable file. Everything in `~\src\` must be compiled for the build to succeed.
  
- ### Contact Me
+ ## Contact Me
  
  IG:  @pjarcher913
  
