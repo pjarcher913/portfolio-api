@@ -18,14 +18,14 @@ func main() {
 	startServer()
 }
 
-func startServer() {
-	http.Handle("/", http.FileServer(http.Dir(WEB_DIR)))
-	http.ListenAndServe(SERVER_PORT, nil)
-}
-
 func initialSetup() {
 	fmt.Println("Initializing services.")
 	logger("_", "Service initialized. Executing initialSetup().")
+}
+
+func startServer() {
+	http.Handle("/", http.FileServer(http.Dir(WEB_DIR)))
+	http.ListenAndServe(SERVER_PORT, nil)
 }
 
 // TODO: Find alternative logging implementation that doesn't require opening and closing the log file every time.
