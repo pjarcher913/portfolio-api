@@ -6,11 +6,11 @@
  
 ## To Begin Serving
 
-Clone this repo, compile/build to *~/ (~/ is the the root of this program's directory, not your filesystem)*, 
-and run the generated executable ***from ~/***.
+Clone this repo, compile/build to `~/` (`~/` is the the root of this program's directory, not your filesystem), 
+and run the generated executable ***from*** `~/`.
  
  ## Contact Me
  
- IG:  @pjarcher913
+ IG:  `@pjarcher913`
  
- Twitter:  @SlapScope
+ Twitter:  `@SlapScope`
