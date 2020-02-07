@@ -1,4 +1,4 @@
 .idea/
 src/.idea/
-build/
+*.exe
 info.log
