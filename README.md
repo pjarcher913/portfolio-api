@@ -1,7 +1,5 @@
 # pjarcher913/portfolio-api
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/pjarcher913/portfolio-api/blob/master/LICENSE)
-![GitHub last commit](https://img.shields.io/github/last-commit/pjarcher913/portfolio-api)
-![Website](https://img.shields.io/website?up_color=%23e8b50e&up_message=https%3A%2F%2Fpjarcher913.github.io&url=https%3A%2F%2Fpjarcher913.github.io)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/pjarcher913/portfolio-api/blob/master/LICENSE) ![GitHub last commit](https://img.shields.io/github/last-commit/pjarcher913/portfolio-api) ![Website](https://img.shields.io/website?up_color=%23e8b50e&up_message=https%3A%2F%2Fpjarcher913.github.io&url=https%3A%2F%2Fpjarcher913.github.io)
 
 <img src="https://golang.org/lib/godoc/images/go-logo-blue.svg"  alt="go_logo" width="60px" height="60px"/>
 <img src="https://cdn4.iconfinder.com/data/icons/logos-3/600/React.js_logo-512.png"  alt="reactjs_logo" width="60px" height="60px"/>
@@ -10,7 +8,7 @@
 
 Full-stack Golang/React project that serves my portfolio website with an underlying API.
 The API is entirely composed of Easter eggs...different requests will do different things.
-[See this document](#) for more information regarding the API.
+[See this document](./API_DOCUMENTATION.md) for more information regarding the API.
 
 ## To Begin Serving
 
