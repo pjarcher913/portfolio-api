@@ -1,0 +1,7 @@
+{"level":"info","msg":"Logger initialized successfully.","time":"2020-02-20T15:48:46-07:00"}
+{"level":"info","msg":"Initializing services via prelimSetup().","time":"2020-02-20T15:48:46-07:00"}
+{"level":"info","msg":"Executing initRouter().","time":"2020-02-20T15:48:46-07:00"}
+{"level":"info","msg":"Executing initWebServer().","time":"2020-02-20T15:48:46-07:00"}
+{"level":"info","msg":"Now serving on 127.0.0.1:3000","time":"2020-02-20T15:48:46-07:00"}
+{"level":"info","msg":"Executing prh_Home_POST(), which is an Easter Egg!","time":"2020-02-20T15:48:48-07:00"}
+{"level":"debug","msg":"RESPONSE-prh_Home_POST()","params":{"rootParam":"patrick_ee-123"},"responseData":{"msg":"Hey, you found an Easter Egg!","param":"patrick_ee-123","time":"2020-02-20 22:48:48.0836616 +0000 UTC"},"time":"2020-02-20T15:48:48-07:00","url":{"Scheme":"","Opaque":"","User":null,"Host":"","Path":"/patrick_ee-123","RawPath":"","ForceQuery":false,"RawQuery":"","Fragment":""}}
