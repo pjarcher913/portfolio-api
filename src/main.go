@@ -1,8 +1,14 @@
 /*
+AUTHOR: Patrick Archer (@pjarcher913)
+DATE CREATED: 7 February 2020
+Copyright (c) 2020 Patrick Archer
+*/
+
+/*
 TODO: Maintain README.md
-TODO: Update/verify license
 TODO: Create more API EEs
 TODO: Prevent users from spamming API calls and crashing the program (keep efficiency in mind when drafting a solution).
+TODO: Create .bat to create `~/logs` (if it doesn't exist) and execute `BUILD.exe`. Can include other functionalities as needed.
 */
 
 package main
@@ -13,6 +19,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/rs/xid"
 	log "github.com/sirupsen/logrus"
+	"models"
 	"net/http"
 	"os"
 	"time"
@@ -28,18 +35,9 @@ const PATH_TO_HOME_HTML = "./src/web/pages/home/home.html"  // Location of home.
 const PATH_TO_RESUME_HTML = "./src/web/pages/resume/resume.html"  // Location of resume.html (used to render page)
 const PATH_TO_PROJECTS_HTML = "./src/web/pages/projects/projects.html"  // Location of projects.html (used to render page)
 const PATH_TO_CONTACT_HTML = "./src/web/pages/contact/contact.html"  // Location of contact.html (used to render page)
-//const PATH_TO_404_HTML = "./src/web/pages/errors/404.html"  // Location of 404.html (used to render page)
+const PATH_TO_404_HTML = "./src/web/pages/errors/404.html"  // Location of 404.html (used to render page)
 
 var LOG_STAMP = "main_" + xid.New().String()  // Unique id tag included into newly-generated log file names
-
-// TODO: Move to ./src/models and re-implement here in main.go
-// ee is an Easter Egg data struct that will be used in response to applicable API requests
-type ee struct {
-	// Define properties of struct
-	Message 	string		`json:"msg"`
-	Parameter 	string		`json:"param"`
-	Timestamp 	string		`json:"time"`
-}
 
 func main() {
 	// Perform all preliminary setups before server goes live and starts listening for requests.
@@ -89,15 +87,15 @@ func initRouter() *mux.Router {
 	r := mux.NewRouter()
 
 	// Init route handlers
-	/* GETs */
-	r.HandleFunc("/", prh_Home_GET).Methods("GET")
-	r.HandleFunc("/resume", prh_Resume_GET).Methods("GET")
-	r.HandleFunc("/projects", prh_Projects_GET).Methods("GET")
-	r.HandleFunc("/contact", prh_Contact_GET).Methods("GET")
-	/* POSTs */
-	r.HandleFunc("/{rootParam}", prh_Home_POST).Methods("POST")
 	/* 404 */
-	//r.NotFoundHandler = custom404Handler
+	r.NotFoundHandler = http.HandlerFunc(prh_404)
+	/* GETs */
+	r.HandleFunc("/", prh_GET_Home).Methods("GET")
+	r.HandleFunc("/resume", prh_GET_Resume).Methods("GET")
+	r.HandleFunc("/projects", prh_GET_Projects).Methods("GET")
+	r.HandleFunc("/contact", prh_GET_Contact).Methods("GET")
+	/* POSTs */
+	r.HandleFunc("/{rootParam}", prh_POST_Home).Methods("POST")
 
 	return r
 }
@@ -117,45 +115,45 @@ func initWebServer(routeHandler *mux.Router) {
 	}
 }
 
-// TODO
-// custom404Handler() is the website's "404 Error" handler when users try to navigate to an invalid route.
-//func custom404Handler(w http.ResponseWriter, r *http.Request) {
-//	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-//	http.ServeFile(w, r, PATH_TO_404_HTML)
-//}
+//prh_404() is the website's "404 Error" handler when users try to navigate to an invalid/un-served route.
+func prh_404(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "text/html; charset=utf-8")
+	w.WriteHeader(http.StatusNotFound) // StatusNotFound = 404
+	http.ServeFile(w, r, PATH_TO_404_HTML)
+}
 
-// prh_Home_GET() is the website's "Home" page GET route handler.
-func prh_Home_GET(w http.ResponseWriter, r *http.Request) {
-	log.Infoln("Executing prh_Home_GET().")
+// prh_GET_Home() is the website's "Home" page GET route handler.
+func prh_GET_Home(w http.ResponseWriter, r *http.Request) {
+	log.Infoln("Executing prh_GET_Home().")
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	http.ServeFile(w, r, PATH_TO_HOME_HTML)
 }
 
-// prh_Resume_GET() is the website's "Resume" page GET route handler.
-func prh_Resume_GET(w http.ResponseWriter, r *http.Request) {
-	log.Infoln("Executing prh_Resume_GET().")
+// prh_GET_Resume() is the website's "Resume" page GET route handler.
+func prh_GET_Resume(w http.ResponseWriter, r *http.Request) {
+	log.Infoln("Executing prh_GET_Resume().")
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	http.ServeFile(w, r, PATH_TO_RESUME_HTML)
 }
 
-// prh_Projects_GET() is the website's "Projects" page GET route handler.
-func prh_Projects_GET(w http.ResponseWriter, r *http.Request) {
-	log.Infoln("Executing prh_Projects_GET().")
+// prh_GET_Projects() is the website's "Projects" page GET route handler.
+func prh_GET_Projects(w http.ResponseWriter, r *http.Request) {
+	log.Infoln("Executing prh_GET_Projects().")
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	http.ServeFile(w, r, PATH_TO_PROJECTS_HTML)
 }
 
-// prh_Contact_GET() is the website's "Contact" page GET route handler.
-func prh_Contact_GET(w http.ResponseWriter, r *http.Request) {
-	log.Infoln("Executing prh_Contact_GET().")
+// prh_GET_Contact() is the website's "Contact" page GET route handler.
+func prh_GET_Contact(w http.ResponseWriter, r *http.Request) {
+	log.Infoln("Executing prh_GET_Contact().")
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
 	http.ServeFile(w, r, PATH_TO_CONTACT_HTML)
 }
 
-// prh_Home_POST() is the website's "Home" page POST route handler.
+// prh_POST_Home() is the website's "Home" page POST route handler.
 // This is an Easter Egg!
-func prh_Home_POST(w http.ResponseWriter, r *http.Request) {
-	log.Infoln("Executing prh_Home_POST(), which is an Easter Egg!")
+func prh_POST_Home(w http.ResponseWriter, r *http.Request) {
+	log.Infoln("Executing prh_POST_Home(), which is an Easter Egg!")
 	w.Header().Set("Content-Type", "application/json")
 
 	// Get raw request URL path
@@ -165,19 +163,22 @@ func prh_Home_POST(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 
 	// Populate response struct
-	easterEgg := ee {
-		Message: "Hey, you found an Easter Egg!",
+	response := models.Model_EasterEgg{
+		Message:   "Hey, you found an API Easter Egg!",
 		Parameter: params["rootParam"],
 		Timestamp: time.Now().UTC().String(),
 	}
 
 	// Log response
 	log.WithFields(log.Fields{
-		"responseData": easterEgg,
-		"params": params,
-		"url": reqUrl,
-	}).Debug("RESPONSE-prh_Home_POST()")
+		"responseData": response,
+		"allParams": params,
+		"fullURL": reqUrl,
+	}).Debug("RESPONSE-prh_POST_Home()")
 
-	// Encode response as JSON and send to client
-	json.NewEncoder(w).Encode(easterEgg)
+	// Encode response as JSON and send to client via http.ResponseWriter
+	encodingErr := json.NewEncoder(w).Encode(response)
+	if encodingErr != nil {
+		log.Fatalln(encodingErr.Error())
+	}
 }
