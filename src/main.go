@@ -115,11 +115,15 @@ func initWebServer(routeHandler *mux.Router) {
 	}
 }
 
+// TODO: Can't serve after w.WriteHeader(), so figure out a way to send 404 code and custom 404.html
 //prh_404() is the website's "404 Error" handler when users try to navigate to an invalid/un-served route.
 func prh_404(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/html; charset=utf-8")
-	w.WriteHeader(http.StatusNotFound) // StatusNotFound = 404
-	http.ServeFile(w, r, PATH_TO_404_HTML)
+	http.Error(w, "404: Page not found!", 404)
+	//w.WriteHeader(http.StatusNotFound)
+	//fmt.Println(w.Header().Get("status"))
+	//w.Header().Set("status", "404 Not Found")
+	//http.ServeFile(w, r, PATH_TO_404_HTML)
 }
 
 // prh_GET_Home() is the website's "Home" page GET route handler.
