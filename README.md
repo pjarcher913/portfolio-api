@@ -1,5 +1,5 @@
 # pjarcher913/portfolio-api
-[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/pjarcher913/portfolio-api/blob/master/LICENSE)
+[![GitHub](https://img.shields.io/github/license/pjarcher913/portfolio-api?color=%230099ff)](https://github.com/pjarcher913/portfolio-api/blob/master/LICENSE)
 [![GitHub last commit](https://img.shields.io/github/last-commit/pjarcher913/portfolio-api)](https://github.com/pjarcher913/portfolio-api/commits/master)
 [![Website](https://img.shields.io/website?up_color=%23e8b50e&up_message=https%3A%2F%2Fpjarcher913.github.io&url=https%3A%2F%2Fpjarcher913.github.io)](https://pjarcher913.github.io)
 

@@ -50,12 +50,12 @@ but the request gets functionally-treated like a GET.
 - `{"param"}` echoes `:message`.
 - `{"time"}` returns the timestamp that the server completed drafting its response to the http request.
 
-__*Sample Request URL:*__
+__Sample Request URL:__
 ```
 localhost:3000/giveMeEasterEgg
 ```
 
-__*Response:*__
+__Response:__
 ```
 {
     "msg": "Hey, you found an Easter Egg!",
@@ -66,12 +66,12 @@ __*Response:*__
 
 If multiple parameters are passed, the response will be a 404 error.
 
-__*Sample Request URL:*__
+__Sample Request URL:__
 ```
 localhost:3000/giveMeEasterEgg/secondParameter
 ```
 
-__*Response:*__
+__Response:__
 ```
 404 page not found
 ```
