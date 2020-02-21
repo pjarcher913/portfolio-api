@@ -1,4 +1,5 @@
 .idea/
 src/.idea/
+logs/
 *.exe
-info.log
+*.log
