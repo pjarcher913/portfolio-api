@@ -46,7 +46,7 @@ Even though this API takes a POST request, nothing actually gets posted in any d
 The trigger simply requires a POST request with one parameter appended to the home route URL,
 but the request gets functionally-treated like a GET.
 
-- `{msg}` always returns "Hey, you found an Easter Egg!".
+- `{"msg"}` always returns "Hey, you found an Easter Egg!".
 - `{"param"}` echoes `:message`.
 - `{"time"}` returns the timestamp that the server completed drafting its response to the http request.
 
