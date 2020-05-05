@@ -14,12 +14,12 @@ TODO: Create .bat to create `~/logs` (if it doesn't exist) and execute `BUILD.ex
 package main
 
 import (
+	"../src/models"
 	"encoding/json"
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/rs/xid"
 	log "github.com/sirupsen/logrus"
-	"models"
 	"net/http"
 	"os"
 	"time"

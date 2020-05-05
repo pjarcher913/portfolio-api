@@ -4,3 +4,4 @@ logs/
 pkg/
 *.exe
 *.log
+go/
