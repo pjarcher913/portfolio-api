@@ -15,6 +15,7 @@ package main
 
 import (
 	"../src/web/api"
+	"../src/web/routes"
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/rs/xid"
@@ -28,15 +29,9 @@ import (
 
 // Only enable if debugging and want extra log info recorded
 const DEBUG_MODE = true  // Limits functionality for dev. purposes
-
 const LOG_PATH = "./logs/"  // Where log files are to be generated and stored
-
 const SERVER_PORT = ":3000"  // Host port to serve on
-const PATH_TO_HOME_HTML = "./src/web/pages/home/home.html"  // Location of home.html (used to render page)
-const PATH_TO_RESUME_HTML = "./src/web/pages/resume/resume.html"  // Location of resume.html (used to render page)
-const PATH_TO_PROJECTS_HTML = "./src/web/pages/projects/projects.html"  // Location of projects.html (used to render page)
-const PATH_TO_CONTACT_HTML = "./src/web/pages/contact/contact.html"  // Location of contact.html (used to render page)
-const PATH_TO_404_HTML = "./src/web/pages/errors/404.html"  // Location of 404.html (used to render page)
+const BUILD_PATH = "src/web/pages/home"  // Location of frontend UI React build to be served
 
 var LOG_STAMP = "main_" + xid.New().String()  // Unique id tag included into newly-generated log file names
 
@@ -93,18 +88,20 @@ func initRouter() *mux.Router {
 	// Init mux router object
 	r := mux.NewRouter()
 
-	// Init route handlers
+	// Init route handlers -- MUST init frontend catch-all "/" handler LAST
+
 	/* 404 */
-	r.NotFoundHandler = http.HandlerFunc(api.PRH_404)
-	/* GETs */
-	// TODO: create directory and structure for normal page route handlers and separate from backend API handlers
-	r.HandleFunc("/api/1", api.PRH_GET_1).Methods("GET")
-	r.HandleFunc("/api/2", api.PRH_GET_2).Methods("GET")
-	r.HandleFunc("/api/3", api.PRH_GET_3).Methods("GET")
-	r.HandleFunc("/api/4", api.PRH_GET_4).Methods("GET")
-	/* POSTs */
-	//r.HandleFunc("/{rootParam}", prh_POST_Home).Methods("POST")
-	r.HandleFunc("/api/1/{rootParam}", api.PRH_POST_1).Methods("POST")
+	r.NotFoundHandler = http.HandlerFunc(routes.PRH_404)
+
+	/* API */
+	apiRoute := r.PathPrefix("/api/").Subrouter()
+	apiRoute.HandleFunc("/1/{rootParam}", api.PRH_POST_1).Methods("POST")
+
+	/*  FRONTEND & SUPPORTING FILES -- MUST INIT LAST */
+	buildHandler := http.FileServer(http.Dir(BUILD_PATH))
+	staticHandler := http.StripPrefix("/static/", http.FileServer(http.Dir("/static")))
+	r.PathPrefix("/").Handler(buildHandler)
+	r.PathPrefix("/static/").Handler(staticHandler)
 
 	return r
 }

@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/static/css/main.43f68333.chunk.css",
+    "main.js": "/static/js/main.16f4e362.chunk.js",
+    "main.js.map": "/static/js/main.16f4e362.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
+    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
+    "static/js/2.26b5e677.chunk.js": "/static/js/2.26b5e677.chunk.js",
+    "static/js/2.26b5e677.chunk.js.map": "/static/js/2.26b5e677.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.ddc3c1c812845948a4298976888c22ae.js": "/precache-manifest.ddc3c1c812845948a4298976888c22ae.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.43f68333.chunk.css.map": "/static/css/main.43f68333.chunk.css.map",
+    "static/media/Resume_Current.pdf": "/static/media/Resume_Current.26129f3e.pdf",
+    "static/media/profile_pic.jpg": "/static/media/profile_pic.11b5e850.jpg",
+    "static/media/proj-1-img.png": "/static/media/proj-1-img.0ee92286.png",
+    "static/media/proj-2-img.png": "/static/media/proj-2-img.efcbbefb.png"
+  }
+}
