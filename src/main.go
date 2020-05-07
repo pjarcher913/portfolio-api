@@ -5,8 +5,9 @@ Copyright (c) 2020 Patrick Archer
 */
 
 /*
-TODO: Maintain README.md
-TODO: Create more API EEs
+TODO: Maintain README.md and API_DOCUMENTATION.md.
+TODO: Update LICENSE and NOTICE.md to reflect new developments.
+TODO: Create more API EEs.
 TODO: Prevent users from spamming API calls and crashing the program (keep efficiency in mind when drafting a solution).
 TODO: Create .bat to create `~/logs` (if it doesn't exist) and execute `BUILD.exe`. Can include other functionalities as needed.
 */
@@ -14,8 +15,8 @@ TODO: Create .bat to create `~/logs` (if it doesn't exist) and execute `BUILD.ex
 package main
 
 import (
-	"../src/web/api"
-	"../src/web/routes"
+	"./web/api"
+	"./web/routes"
 	"fmt"
 	"github.com/gorilla/mux"
 	"github.com/rs/xid"

@@ -36,7 +36,7 @@ func PRH_POST_1(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 
 	// Populate response struct
-	response := models.Model_EasterEgg{
+	response := models.Model_POST_1{
 		Message:   "Hey, you found an API Easter Egg!",
 		Parameter: params["rootParam"],
 		Timestamp: time.Now().UTC().String(),
